@@ -1,0 +1,154 @@
+
+/* PixiCats PNG sprite patch */
+/* Copy this block to the END of src/styles.css */
+
+.pixelWorld {
+  grid-auto-columns: 32px;
+  grid-auto-rows: 32px;
+}
+
+.tile {
+  width: 32px !important;
+  height: 32px !important;
+  position: relative;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+.tile::after,
+.tile::before {
+  display: none !important;
+  content: none !important;
+}
+
+.tileImage {
+  width: 32px;
+  height: 32px;
+  display: block;
+  image-rendering: pixelated;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.resourceOverlay {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 26px;
+  height: 26px;
+  image-rendering: pixelated;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  z-index: 3;
+  filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.65));
+}
+
+.buildingSprite {
+  z-index: 12 !important;
+  width: 32px !important;
+  height: 32px !important;
+  position: relative !important;
+  display: grid !important;
+  place-items: center !important;
+  background: transparent !important;
+  border: none !important;
+  filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.35));
+  overflow: visible !important;
+}
+
+.buildingSprite span {
+  display: none !important;
+}
+
+.buildingImage {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.buildingSprite b {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  min-width: 14px;
+  height: 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: #10101a;
+  background: var(--yellow, #ffd166);
+  font-size: 9px;
+  font-weight: 950;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  z-index: 20;
+}
+
+.catSprite {
+  display: none !important;
+}
+
+.catSpriteWrap {
+  z-index: 30;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  animation: catBob 0.8s infinite alternate;
+  filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.35));
+}
+
+.catImage {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.catSpriteWrap b {
+  position: absolute;
+  right: -6px;
+  top: -7px;
+  min-width: 15px;
+  height: 15px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 9px;
+  color: #10101a;
+  background: var(--yellow, #ffd166);
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  z-index: 40;
+}
+
+.role-raider .catImage {
+  filter: drop-shadow(0 0 3px rgba(239, 111, 159, 0.95));
+}
+
+.role-farmer .catImage {
+  filter: drop-shadow(0 0 3px rgba(142, 226, 107, 0.95));
+}
+
+.role-trader .catImage {
+  filter: drop-shadow(0 0 3px rgba(123, 223, 242, 0.95));
+}
+
+.role-builder .catImage {
+  filter: drop-shadow(0 0 3px rgba(255, 209, 102, 0.95));
+}
+
+@keyframes catBob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-2px);
+  }
+}
