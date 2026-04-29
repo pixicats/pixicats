@@ -1,0 +1,785 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #111022;
+  --panel: rgba(255, 255, 255, 0.08);
+  --text: #fff8e8;
+  --muted: #c9c1df;
+  --yellow: #ffd166;
+  --pink: #ef6f9f;
+  --blue: #7bdff2;
+  --green: #8ee26b;
+  --road: #8c6f5c;
+  --water: #3aa7ff;
+  --sand: #ffd98a;
+  --grass: #54cf65;
+  --forest: #2f9c4d;
+  --stone: #8f96a3;
+  --gold: #f6c543;
+  --crystal: #76f6ff;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(255, 209, 102, 0.22), transparent 24%),
+    radial-gradient(circle at 80% 20%, rgba(123, 223, 242, 0.16), transparent 28%),
+    radial-gradient(circle at 50% 90%, rgba(180, 156, 255, 0.2), transparent 30%),
+    var(--bg);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  border-radius: 16px;
+  padding: 13px 16px;
+  font-weight: 900;
+  cursor: pointer;
+  color: #151120;
+  background: var(--yellow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.35);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+button.secondary {
+  background: var(--blue);
+}
+
+button.danger {
+  background: var(--pink);
+  color: white;
+}
+
+button.ghost {
+  color: white;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+button.baseButton {
+  background: #0052ff;
+  color: white;
+}
+
+input,
+select {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(0,0,0,0.22);
+  color: white;
+  border-radius: 14px;
+  padding: 12px;
+  margin-top: 6px;
+}
+
+select option {
+  color: #111;
+}
+
+.appShell {
+  width: min(1280px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 28px 0 70px;
+}
+
+.topPanel,
+.creatorPanel {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: 28px;
+  border-radius: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  background:
+    linear-gradient(135deg, rgba(239, 111, 159, 0.26), rgba(123, 223, 242, 0.18)),
+    rgba(255, 255, 255, 0.07);
+}
+
+.creatorPanel {
+  grid-template-columns: 1fr;
+  margin-top: 16px;
+  background:
+    linear-gradient(135deg, rgba(0, 82, 255, 0.24), rgba(255, 209, 102, 0.12)),
+    rgba(255, 255, 255, 0.07);
+}
+
+.creatorForm {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr 0.8fr 1fr;
+  gap: 12px;
+}
+
+.creatorActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.creatorNote,
+.walletStatus,
+.ownerLine {
+  color: var(--muted);
+}
+
+.walletStatus {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.walletStatus b {
+  color: var(--yellow);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.eyebrow.small {
+  font-size: 11px;
+}
+
+h1 {
+  margin: 0;
+  line-height: 0.9;
+  font-size: clamp(46px, 9vw, 96px);
+  letter-spacing: -0.08em;
+  text-shadow: 5px 5px 0 rgba(0, 0, 0, 0.35);
+}
+
+h2,
+h3 {
+  margin: 0;
+}
+
+.intro {
+  max-width: 780px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.actions {
+  display: grid;
+  gap: 12px;
+  min-width: 180px;
+}
+
+.quickStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.quickStats article,
+.worldCard,
+.sidePanel,
+.worldLog,
+.agentsArea,
+.gameLoop {
+  padding: 20px;
+  border-radius: 26px;
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.quickStats article {
+  display: grid;
+  gap: 6px;
+}
+
+.quickStats svg {
+  color: var(--yellow);
+}
+
+.quickStats span {
+  color: var(--muted);
+}
+
+.quickStats b {
+  font-size: 30px;
+}
+
+.gameGrid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 16px;
+}
+
+.sectionTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 18px;
+  margin-bottom: 14px;
+}
+
+.sectionTitle p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.worldWrap {
+  overflow: auto;
+  padding-bottom: 8px;
+}
+
+.pixelWorld {
+  position: relative;
+  display: grid;
+  width: max-content;
+  padding: 12px;
+  border-radius: 22px;
+  background: #1b1830;
+  border: 4px solid rgba(255, 255, 255, 0.14);
+  image-rendering: pixelated;
+  box-shadow: inset 0 0 0 4px rgba(0, 0, 0, 0.18);
+}
+
+.tile {
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  position: relative;
+}
+
+.tile-grass {
+  background:
+    linear-gradient(45deg, rgba(255,255,255,0.08) 25%, transparent 25%),
+    var(--grass);
+}
+
+.tile-forest {
+  background: var(--forest);
+}
+
+.tile-forest::after {
+  content: "♣";
+  color: rgba(5, 43, 22, 0.65);
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  font-size: 18px;
+}
+
+.tile-stone {
+  background: var(--stone);
+}
+
+.tile-stone::after {
+  content: "▪";
+  color: rgba(255, 255, 255, 0.35);
+  position: absolute;
+  left: 8px;
+  top: 2px;
+}
+
+.tile-water {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.22) 20%, transparent 20%, transparent 48%, rgba(255,255,255,0.16) 48%, rgba(255,255,255,0.16) 70%, transparent 70%),
+    var(--water);
+}
+
+.tile-sand {
+  background: var(--sand);
+}
+
+.tile-road {
+  background:
+    linear-gradient(90deg, transparent 42%, rgba(255,255,255,0.2) 42%, rgba(255,255,255,0.2) 58%, transparent 58%),
+    var(--road);
+}
+
+.tile-city {
+  background:
+    linear-gradient(45deg, rgba(255,255,255,0.18) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.12) 75%, transparent 75%),
+    color-mix(in srgb, var(--city-color) 70%, #ffffff 30%);
+}
+
+.tile-fish {
+  background: linear-gradient(135deg, #9ee8ff, #3aa7ff);
+}
+
+.tile-gold {
+  background: linear-gradient(135deg, #fff0a6, var(--gold));
+}
+
+.tile-crystal {
+  background: linear-gradient(135deg, #d8fbff, var(--crystal));
+}
+
+.resourceIcon {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  filter: drop-shadow(1px 1px 0 #000);
+}
+
+.cityLabel {
+  pointer-events: none;
+  z-index: 6;
+  align-self: start;
+  justify-self: center;
+  margin-top: -7px;
+  padding: 2px 6px;
+  border-radius: 8px;
+  background: rgba(10, 9, 18, 0.82);
+  font-size: 10px;
+  font-weight: 950;
+  white-space: nowrap;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.buildingSprite {
+  z-index: 8;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border: 2px solid white;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.22);
+  filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.34));
+}
+
+.buildingSprite span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.buildingSprite b {
+  position: absolute;
+  right: -5px;
+  bottom: -6px;
+  min-width: 12px;
+  padding: 0 3px;
+  border-radius: 999px;
+  color: #10101a;
+  background: var(--yellow);
+  font-size: 9px;
+}
+
+.catSprite {
+  z-index: 20;
+  width: 22px;
+  height: 20px;
+  margin: 2px 1px;
+  position: relative;
+  border: 2px solid rgba(0, 0, 0, 0.65);
+  border-radius: 8px 8px 7px 7px;
+  filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.35));
+  animation: catBob 0.8s infinite alternate;
+}
+
+.role-raider {
+  box-shadow: 0 0 0 2px rgba(239, 111, 159, 0.75);
+}
+
+.role-farmer {
+  box-shadow: 0 0 0 2px rgba(142, 226, 107, 0.75);
+}
+
+.role-trader {
+  box-shadow: 0 0 0 2px rgba(123, 223, 242, 0.75);
+}
+
+.role-builder {
+  box-shadow: 0 0 0 2px rgba(255, 209, 102, 0.75);
+}
+
+@keyframes catBob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-2px); }
+}
+
+.catSprite b {
+  position: absolute;
+  right: -7px;
+  top: -8px;
+  min-width: 14px;
+  height: 14px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  font-size: 9px;
+  color: #10101a;
+  background: var(--yellow);
+  border: 1px solid rgba(0,0,0,0.4);
+}
+
+.catEar {
+  position: absolute;
+  top: -8px;
+  width: 9px;
+  height: 9px;
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+  background: inherit;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.leftEar {
+  left: 1px;
+}
+
+.rightEar {
+  right: 1px;
+}
+
+.catEye {
+  position: absolute;
+  top: 5px;
+  width: 3px;
+  height: 4px;
+  border-radius: 99px;
+  background: #111;
+}
+
+.leftEye {
+  left: 5px;
+}
+
+.rightEye {
+  right: 5px;
+}
+
+.catNose {
+  position: absolute;
+  top: 11px;
+  left: 9px;
+  width: 4px;
+  height: 3px;
+  border-radius: 99px;
+  background: #ff6f9f;
+}
+
+.cat-orange { background: #ff9f1c; }
+.cat-black { background: #24222c; }
+.cat-white { background: #fff8ee; }
+.cat-gray { background: #aab0b8; }
+.cat-purple { background: #a879ff; }
+.cat-blue { background: #5ec9ff; }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend i {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+.legendGrass { background: var(--grass); }
+.legendCity { background: var(--yellow); }
+.legendRoad { background: var(--road); }
+.legendWater { background: var(--water); }
+.legendFish { background: #3aa7ff; }
+.legendGold { background: var(--gold); }
+.legendCrystal { background: var(--crystal); }
+
+.badgeList {
+  display: grid;
+  gap: 10px;
+}
+
+.badgeList article {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.075);
+}
+
+.badgeEmoji {
+  font-size: 24px;
+}
+
+.badgeList p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.badgeList strong {
+  color: var(--yellow);
+}
+
+.cityCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.cityCard {
+  padding: 18px;
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--city-color) 28%, transparent), rgba(255,255,255,0.06));
+  border: 2px solid color-mix(in srgb, var(--city-color) 70%, transparent);
+}
+
+.cityCardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cityCardHeader p {
+  color: var(--muted);
+  margin: 5px 0 0;
+}
+
+.cityCardHeader span {
+  color: #10101a;
+  background: var(--city-color);
+  align-self: start;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-weight: 950;
+}
+
+.cityNumbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.cityNumbers p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.cityNumbers b {
+  display: block;
+  color: white;
+  font-size: 22px;
+}
+
+.agentsArea {
+  margin-top: 16px;
+}
+
+.agentCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.agentCard {
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.075);
+}
+
+.agentHeader {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.agentHeader p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.miniCat {
+  width: 42px;
+  height: 38px;
+  border: 2px solid rgba(0,0,0,0.6);
+  border-radius: 14px 14px 10px 10px;
+  position: relative;
+}
+
+.miniCat::before,
+.miniCat::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 14px;
+  height: 14px;
+  background: inherit;
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}
+
+.miniCat::before {
+  left: 2px;
+}
+
+.miniCat::after {
+  right: 2px;
+}
+
+.miniCat span::before,
+.miniCat span::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  width: 5px;
+  height: 7px;
+  border-radius: 99px;
+  background: #111;
+}
+
+.miniCat span::before {
+  left: 11px;
+}
+
+.miniCat span::after {
+  right: 11px;
+}
+
+.hpBar {
+  height: 9px;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 12px 0 8px;
+  background: rgba(255,255,255,0.12);
+}
+
+.hpBar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #ef6f9f, #8ee26b);
+}
+
+.walletGrid,
+.ownedBadges,
+.resourceGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.walletGrid span,
+.ownedBadges span,
+.resourceGrid span {
+  padding: 6px 8px;
+  border-radius: 999px;
+  color: #10101a;
+  background: var(--blue);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.resourceGrid span {
+  background: var(--green);
+}
+
+.ownedBadges span {
+  background: var(--yellow);
+}
+
+.ownedBadges em {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.agentCard ul,
+.worldLog ul {
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.gameLoop {
+  margin-top: 16px;
+}
+
+.gameLoop div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.gameLoop span {
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(255, 209, 102, 0.14);
+  color: var(--yellow);
+  font-weight: 950;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.worldLog {
+  margin-top: 16px;
+}
+
+@media (max-width: 1100px) {
+  .gameGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .agentCards,
+  .quickStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cityCards,
+  .creatorForm {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .topPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    grid-template-columns: 1fr;
+  }
+
+  .quickStats,
+  .agentCards {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionTitle {
+    display: block;
+  }
+}
