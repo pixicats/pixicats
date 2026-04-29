@@ -1,79 +1,98 @@
-# PixiCats Base Mainnet
+# PixiCats Web3 PvP
 
-PixiCats is a playable pixel-world game prototype where cat agents build cities, use city tokens, buy badges and level up.
+PixiCats is a React/Vite Web3 game prototype where AI cat agents build pixel cities, farm resources, trade city tokens, buy badges, defend territories and raid rivals.
 
-This version adds:
+## Current status
 
-- wallet connection
-- Base Mainnet switch
-- create/connect your own agent
-- optional on-chain agent registration
-- smart contracts for:
-  - AgentRegistry
-  - ERC1155 PixiBadges
-  - CityTokenFactory
-- pixel map with colorful cities, cats, roads, water, trees and buildings
+Working frontend simulation:
 
-## Run game locally
+- Pixel world
+- Cat agents
+- Agent creator
+- Roles: builder, trader, raider, farmer
+- Resources: fish, gold, crystal
+- HP and recovery
+- PvP raids
+- City capture
+- City ownership
+- Passive city-owner income
+- City defense
+- Badge progression
+- LocalStorage save
+- Wallet connection
+- Base Mainnet network switch
+- Optional on-chain agent registration through AgentRegistry
+
+Not yet on-chain:
+
+- farm
+- build
+- trade
+- raid
+- city capture
+- passive game income
+
+Those actions currently run in the frontend simulation. The next step for a fully on-chain game is a GameEngine smart contract.
+
+## Local run
 
 ```bash
 npm install
 npm run dev
 ```
 
-The game works immediately in local mode.
+## Production build
 
-## Base Mainnet facts
-
-Base Mainnet chain ID is `8453`.
-The frontend uses:
-
-```txt
-chainId: 0x2105
-RPC: https://mainnet.base.org
-Explorer: https://basescan.org
-Native token: ETH
+```bash
+npm run build
+npm run preview
 ```
 
-## Create local agent
+## Deploy to GitHub Pages
 
-1. Run the app.
-2. Click `Connect wallet`.
-3. Choose name, cat color and home city.
-4. Click `Create local agent`.
+This repository includes:
 
-This adds your own cat agent to the world immediately.
+```txt
+.github/workflows/deploy.yml
+vite.config.ts
+```
 
-## Create agent on Base Mainnet
+Steps:
 
-First deploy contracts:
+1. Upload all files to your GitHub repository.
+2. Go to Settings -> Pages.
+3. Under Build and deployment, set Source to GitHub Actions.
+4. Push to main.
+5. Open the Actions tab and wait for deployment.
+
+The site URL will look like:
+
+```txt
+https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/
+```
+
+## Base Mainnet contract deployment
+
+Create .env from the example:
 
 ```bash
 cp .env.example .env
 ```
 
-Add your deployer private key:
+Add:
 
 ```txt
-DEPLOYER_PRIVATE_KEY=your_private_key_without_0x_or_with_0x
 BASE_RPC_URL=https://mainnet.base.org
+DEPLOYER_PRIVATE_KEY=your_private_key
 ```
 
-Deploy:
+Deploy contracts:
 
 ```bash
 npm run deploy:base
 ```
 
-After deploy, the terminal will print addresses:
-
-```txt
-AgentRegistry: 0x...
-PixiBadges: 0x...
-CityTokenFactory: 0x...
-```
-
-Add them to `.env`:
+Add the printed addresses to .env:
 
 ```txt
 VITE_AGENT_REGISTRY_ADDRESS=0x...
@@ -81,15 +100,14 @@ VITE_BADGE_NFT_ADDRESS=0x...
 VITE_CITY_TOKEN_FACTORY_ADDRESS=0x...
 ```
 
-Restart app:
+Restart:
 
 ```bash
 npm run dev
 ```
 
-Now `Create on Base` sends a real transaction to Base Mainnet.
+## Safety
 
-## Important warning
-
-Base Mainnet uses real ETH for gas and real transactions.
-Test carefully before using valuable wallets.
+Do not commit .env.
+Do not upload private keys to GitHub.
+Use a fresh deployer wallet with limited funds.

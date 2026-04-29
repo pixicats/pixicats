@@ -1,0 +1,7 @@
+{
+  "required_files_missing": [],
+  "json_errors": [],
+  "relative_import_errors": [],
+  "checked": "file presence, JSON validity, relative imports",
+  "not_checked": "npm install and npm run build were not executed in this sandbox"
+}
