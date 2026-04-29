@@ -1,0 +1,29 @@
+{
+  "name": "pixicats-base-mainnet",
+  "version": "0.3.0",
+  "private": true,
+  "description": "PixiCats pixel-world with wallet connection, agent creation and Base Mainnet smart-contract starter.",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "compile:contracts": "hardhat compile",
+    "deploy:base": "hardhat run scripts/deploy.ts --network base"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-ethers": "latest",
+    "@openzeppelin/contracts": "latest",
+    "@vitejs/plugin-react": "latest",
+    "dotenv": "latest",
+    "ethers": "latest",
+    "hardhat": "latest",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest"
+  }
+}
