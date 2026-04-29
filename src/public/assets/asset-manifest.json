@@ -1,0 +1,58 @@
+{
+  "cats": [
+    "cats/cat_black.png",
+    "cats/cat_blue.png",
+    "cats/cat_gold.png",
+    "cats/cat_gray.png",
+    "cats/cat_green.png",
+    "cats/cat_orange.png",
+    "cats/cat_purple.png",
+    "cats/cat_white.png"
+  ],
+  "buildings": [
+    "buildings/building_bank.png",
+    "buildings/building_house.png",
+    "buildings/building_monument.png",
+    "buildings/building_park.png",
+    "buildings/building_shop.png",
+    "buildings/building_tower.png",
+    "buildings/building_wall.png"
+  ],
+  "tiles": [
+    "tiles/tile_city.png",
+    "tiles/tile_crystal.png",
+    "tiles/tile_fish.png",
+    "tiles/tile_forest.png",
+    "tiles/tile_gold.png",
+    "tiles/tile_grass.png",
+    "tiles/tile_road.png",
+    "tiles/tile_sand.png",
+    "tiles/tile_stone.png",
+    "tiles/tile_water.png"
+  ],
+  "resources": [
+    "resources/resource_crystal.png",
+    "resources/resource_fish.png",
+    "resources/resource_gold.png"
+  ],
+  "badges": [
+    "badges/badge_builder.png",
+    "badges/badge_founder.png",
+    "badges/badge_legend.png",
+    "badges/badge_mayor.png",
+    "badges/badge_merchant.png",
+    "badges/badge_whale.png"
+  ],
+  "ui": [
+    "ui/ui_auto.png",
+    "ui/ui_play.png",
+    "ui/ui_reset.png",
+    "ui/ui_wallet.png"
+  ],
+  "decor": [
+    "decor/decor_bridge.png",
+    "decor/decor_chest.png",
+    "decor/decor_flower.png",
+    "decor/decor_tree.png"
+  ]
+}
