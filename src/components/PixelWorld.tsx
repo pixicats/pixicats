@@ -5,37 +5,9 @@ type Props = {
   state: GameState;
 };
 
+const asset = (path: string) => `${import.meta.env.BASE_URL}assets/${path}`;
+
 const tileClass = (tile: Tile) => `tile tile-${tile.type}`;
-
-const buildingEmoji = (building: Building) => {
-  if (building.type === "house") return "🏠";
-  if (building.type === "shop") return "🏪";
-  if (building.type === "tower") return "🗼";
-  if (building.type === "bank") return "🏦";
-  if (building.type === "park") return "🌳";
-  if (building.type === "wall") return "🧱";
-  return "🗿";
-};
-
-const CatSprite = ({ agent }: { agent: Agent }) => {
-  return (
-    <div
-      className={`catSprite cat-${agent.catColor} role-${agent.role}`}
-      title={`${agent.name} | ${agent.role} | Level ${agent.level} | HP ${agent.hp}`}
-      style={{
-        gridColumnStart: agent.position.x + 1,
-        gridRowStart: agent.position.y + 1
-      }}
-    >
-      <span className="catEar leftEar" />
-      <span className="catEar rightEar" />
-      <span className="catEye leftEye" />
-      <span className="catEye rightEye" />
-      <span className="catNose" />
-      <b>{agent.level}</b>
-    </div>
-  );
-};
 
 const BuildingSprite = ({ building, cities }: { building: Building; cities: City[] }) => {
   const city = cities.find((item) => item.id === building.cityId);
@@ -50,8 +22,34 @@ const BuildingSprite = ({ building, cities }: { building: Building; cities: City
         borderColor: city?.color || "#ffffff"
       }}
     >
-      <span>{buildingEmoji(building)}</span>
+      <img
+        src={asset(`buildings/building_${building.type}.png`)}
+        className="buildingImage"
+        alt={building.type}
+        draggable={false}
+      />
       <b>{building.level}</b>
+    </div>
+  );
+};
+
+const CatSprite = ({ agent }: { agent: Agent }) => {
+  return (
+    <div
+      className={`catSpriteWrap role-${agent.role}`}
+      title={`${agent.name} | ${agent.role} | Level ${agent.level} | HP ${agent.hp}`}
+      style={{
+        gridColumnStart: agent.position.x + 1,
+        gridRowStart: agent.position.y + 1
+      }}
+    >
+      <img
+        src={asset(`cats/cat_${agent.catColor}.png`)}
+        className="catImage"
+        alt={agent.name}
+        draggable={false}
+      />
+      <b>{agent.level}</b>
     </div>
   );
 };
@@ -62,12 +60,13 @@ export const PixelWorld = ({ state }: Props) => {
       <div
         className="pixelWorld"
         style={{
-          gridTemplateColumns: `repeat(${state.width}, 24px)`,
-          gridTemplateRows: `repeat(${state.height}, 24px)`
+          gridTemplateColumns: `repeat(${state.width}, 32px)`,
+          gridTemplateRows: `repeat(${state.height}, 32px)`
         }}
       >
         {state.tiles.map((tile) => {
           const city = tile.cityId ? state.cities.find((item) => item.id === tile.cityId) : undefined;
+          const isResource = tile.type === "fish" || tile.type === "gold" || tile.type === "crystal";
 
           return (
             <div
@@ -76,9 +75,21 @@ export const PixelWorld = ({ state }: Props) => {
               title={tile.resourceAmount ? `${tile.type}: ${tile.resourceAmount}` : tile.type}
               style={city ? { "--city-color": city.color } as React.CSSProperties : undefined}
             >
-              {tile.type === "fish" && <span className="resourceIcon">🐟</span>}
-              {tile.type === "gold" && <span className="resourceIcon">🪙</span>}
-              {tile.type === "crystal" && <span className="resourceIcon">💎</span>}
+              <img
+                src={asset(`tiles/tile_${tile.type}.png`)}
+                className="tileImage"
+                alt=""
+                draggable={false}
+              />
+
+              {isResource && (
+                <img
+                  src={asset(`resources/resource_${tile.type}.png`)}
+                  className="resourceOverlay"
+                  alt={tile.type}
+                  draggable={false}
+                />
+              )}
             </div>
           );
         })}
